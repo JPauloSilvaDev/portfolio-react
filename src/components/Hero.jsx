@@ -2,12 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
 import { portfolioData } from '../data';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
   const { language } = useLanguage();
-  const { name, title, linkedin, github, email, greeting } = portfolioData[language].personalInfo;
+  const { name, title, linkedin, github, email, greeting, resumeUrl, resumeLabel } = portfolioData[language].personalInfo;
 
   return (
     <section className="hero-section">
@@ -58,6 +58,24 @@ const Hero = () => {
             <a href={`mailto:${email}`} className="social-icon">
               <FaEnvelope />
             </a>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.1, duration: 0.8 }}
+            className="cta-container"
+          >
+            <motion.a 
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary resume-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaDownload /> {resumeLabel}
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>
